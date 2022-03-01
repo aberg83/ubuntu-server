@@ -24,6 +24,14 @@ dpkg-reconfigure --priority=low unattended-upgrades
 apt install zfsutils-linux -y
 zpool import -d /dev/disk/by-id ${POOL}
 
+# Setup SMART monitoring
+apt install smartmontools -y
+cat >> /etc/smartd.conf << EOF
+DEVICESCAN -H -l error -l selftest -f -s (O/../../5/11|L/../../5/13|C/../../5/15) -m ${EMAIL}
+EOF
+systemctl enable smartmontools
+systemctl start smartmontools
+
 # Setup Sanoid
 apt install sanoid -y
 cat >> /home/${USER}/pre_snap.sh << EOF
