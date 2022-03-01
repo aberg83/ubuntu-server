@@ -55,7 +55,7 @@ cat >> /etc/sanoid/sanoid.conf << EOF
     recursive = no
     autosnap = yes
     autoprune = yes
-	  pre_snapshot_script = /home/${USER}/pre_snap.sh
+    pre_snapshot_script = /home/${USER}/pre_snap.sh
     post_snapshot_script = /home/${USER}/post_snap.sh
     script_timeout = 0
 EOF
