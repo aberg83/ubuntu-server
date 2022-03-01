@@ -267,12 +267,12 @@ apt install nut -y
 sed -i 's/MODE=none/MODE=netserver/' /etc/nut/nut.conf
 cat > /etc/nut/notify << EOF
 #! /bin/sh
-echo "$*" | mailx -s "${HOSTNAME}: UPS notice" ${EMAIL}
+echo "$*" | mail -s "${HOSTNAME}: UPS notice" ${EMAIL}
 EOF
 chown root:nut /etc/nut/notify
-chmod 740 /etc/nut/notify
+chmod +x /etc/nut/notify
 cat > /etc/nut/upsmon.conf << EOF
-MONITOR ups@localhost 1 ${USER} ${PASS} master
+MONITOR ups@127.0.0.1:3493 1 ${USER} ${PASS} master
 RUN_AS_USER nut
 NOTIFYCMD /etc/nut/notify
 NOTIFYFLAG ONBATT SYSLOG+WALL+EXEC
