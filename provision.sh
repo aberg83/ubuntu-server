@@ -93,6 +93,17 @@ git clone https://github.com/keylase/nvidia-patch.git
 cd nvidia-patch
 ./patch.sh 
 
+# Deactivate DNSStubListener
+mkdir /etc/systemd/resolved.conf.d
+cat >> /etc/systemd/resolved.conf.d/adguardhome.conf << EOF
+[Resolve]
+DNS=127.0.0.1
+DNSStubListener=no
+EOF
+mv /etc/resolv.conf /etc/resolv.conf.backup
+ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf
+systemctl reload-or-restart systemd-resolved
+
 # Pull docker containers
 cd /home/${USER}
 git clone https://github.com/aberg83/docker-compose
