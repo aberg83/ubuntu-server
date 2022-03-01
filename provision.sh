@@ -202,8 +202,8 @@ systemctl restart smbd
 mkdir /home/${USER}/.ssh
 chmod 700 /home/${USER}/.ssh
 echo "${USER_KEY}" > /home/${USER}/.ssh/authorized_keys
-chown -R aberg /home/${USER}/.ssh
-chgrp -R aberg /home/${USER}/.ssh
+chown -R ${USER} /home/${USER}/.ssh
+chgrp -R ${USER} /home/${USER}/.ssh
 chmod 600 /home/${USER}/.ssh/authorized_keys
 mkdir /root/.ssh
 chmod 700 /root/.ssh
