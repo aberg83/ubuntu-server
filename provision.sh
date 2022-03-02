@@ -330,3 +330,11 @@ sed -i 's/ZED_EMAIL_ADDR="root"/ZED_EMAIL_ADDR="${EMAIL}"/' /etc/zfs/zed.d/zed.r
 sed -i 's/#ZED_NOTIFY_VERBOSE=0/ZED_NOTIFY_VERBOSE=1/' /etc/zfs/zed.d/zed.rc
 systemctl restart zed
 zpool scrub storage
+
+# Configure .bash_aliases
+cd /home/${USER}
+cat >> .bash_aliases << EOF
+alias wg-show='docker exec -it wireguard /app/show-peer'
+alias wg-status='docker exec -it wireguard wg'
+alias dc='docker-compose -f /home/${USER}/docker-compose/docker-compose.yml --env-file /home/${USER}/docker-compose/.env'
+EOF
