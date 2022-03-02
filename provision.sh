@@ -11,6 +11,7 @@ apt dist-upgrade -y
 dpkg-reconfigure tzdata
 
 # Install Docker & Docker Compose
+apt install curl -y
 curl -fsSL https://get.docker.com -o get-docker.sh
 sh get-docker.sh
 usermod -aG docker ${USER}
