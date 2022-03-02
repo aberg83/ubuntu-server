@@ -14,7 +14,8 @@ dpkg-reconfigure tzdata
 curl -fsSL https://get.docker.com -o get-docker.sh
 sh get-docker.sh
 usermod -aG docker ${USER}
-apt install docker-compose -y
+curl -L --fail https://raw.githubusercontent.com/linuxserver/docker-docker-compose/master/run.sh -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
 
 # Setup unattended-upgrades (requires user input)
 apt install unattended-upgrades -y
